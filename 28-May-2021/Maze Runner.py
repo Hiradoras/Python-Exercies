@@ -46,17 +46,17 @@ def maze_runner(maze, directions):
     for y in range(len(maze)):
         for x in range(len(maze)):
             if maze[x][y] == 2:
-                curr_x, curr_y = x,y
+                curr_x = y
+                curr_y = x
     
     for directs in directions:
         if directs == "N": curr_y -=1
         if directs == "S": curr_y +=1
         if directs == "E": curr_x +=1
         if directs == "W": curr_x -=1
-    
-    if curr_x > len(maze) - 1 or curr_x < 0 or curr_y < 0 or curr_y < len(maze) - 1 or maze[x][y] == 1:
-        return "Dead" 
-    if maze[curr_x,curr_y] == 3:
-        return "Finish"
+        if curr_y < 0 or curr_y > len(maze) - 1 or curr_x < 0 or curr_x > len(maze) - 1 or maze[curr_y][curr_x] == 1:
+            return "Dead" 
+        if maze[curr_y][curr_x] == 3:
+            return "Finish"
     else:
-        "Lost"
+        return "Lost"
